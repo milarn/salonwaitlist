@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salon-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salon-backend
+  template:
+    metadata:
+      labels:
+        app: salon-backend
+    spec:
+      containers:
+        - name: salon-backend
+          image: milarnn/salon-backend:latest
+          imagePullPolicy: Always  # Ensures latest image is always pulled
+          ports:
+            - containerPort: 4000
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-uri-secret
+                  key: MONGO_URI
+            - name: PORT
+              value: "4000"  # Ensure backend runs on port 4000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salon-backend-service
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+spec:
+  selector:
+    app: salon-backend
+  ports:
+    - port: 80
+      targetPort: 4000  # Redirects external port 80 to container port 4000
+      protocol: TCP
+  type: LoadBalancer
+

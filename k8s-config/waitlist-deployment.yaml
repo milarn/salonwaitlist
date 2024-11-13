@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salon-waitlist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salon-waitlist
+  template:
+    metadata:
+      labels:
+        app: salon-waitlist
+    spec:
+      containers:
+      - name: salon-waitlist
+        image: milarnn/wait1:latest
+        imagePullPolicy: Always  # Ensures latest image is always pulled
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salon-waitlist-service
+spec:
+  selector:
+    app: salon-waitlist
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

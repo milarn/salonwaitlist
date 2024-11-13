@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salon-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salon-admin
+  template:
+    metadata:
+      labels:
+        app: salon-admin
+    spec:
+      containers:
+      - name: salon-admin
+        image: milarnn/admin3:latest
+        imagePullPolicy: Always  # Ensures latest image is always pulled
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salon-admin-service
+spec:
+  selector:
+    app: salon-admin
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

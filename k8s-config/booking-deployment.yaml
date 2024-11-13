@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salon-booking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salon-booking
+  template:
+    metadata:
+      labels:
+        app: salon-booking
+    spec:
+      containers:
+      - name: salon-booking
+        image: milarnn/book1:latest
+        imagePullPolicy: Always  # Ensures latest image is always pulled
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salon-booking-service
+spec:
+  selector:
+    app: salon-booking
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

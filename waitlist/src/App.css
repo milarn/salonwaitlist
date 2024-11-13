@@ -1,0 +1,147 @@
+/* Darker background for a more comfortable view */
+body {
+  background-color: #121212; /* Darker shade */
+}
+
+/* Overall container */
+.waitlist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Title and subtitle styling */
+.title {
+  font-size: 2.5rem;
+  color: #3b82f6;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+/* Main content layout */
+.main-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Queue item styling */
+.queue {
+  width: 60%;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px; /* Increased padding for more space */
+  margin-bottom: 15px; /* Added spacing between items */
+  background-color: #1f2937;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.queue-item.active {
+  background-color: #f59e0b; /* Soft orange for current client */
+}
+
+.queue-position {
+  margin-right: 15px;
+}
+
+/* Dot indicators */
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.active-dot {
+  background-color: #10b981; /* Green dot for in-progress */
+}
+
+.waiting-dot {
+  background-color: #fbbf24; /* Orange dot for waiting */
+}
+
+/* Centered client info with larger name */
+.queue-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.client-name {
+  font-size: 1.5rem; /* Larger font size for name */
+  font-weight: bold;
+  flex: 1;
+  text-align: center; /* Center align text */
+}
+
+.client-status {
+  font-size: 1.1rem;
+  color: #ddd;
+  text-align: right; /* Align time right */
+}
+
+.scissor-icon {
+  font-size: 1.3rem; /* Larger scissor icon */
+  margin-left: 8px;
+  color: #ffeb3b; /* Yellow scissor icon */
+}
+
+/* Estimated waiting time section */
+.estimated-waiting-time {
+  background-color: #1f2937;
+  padding: 15px;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  min-width: 150px;
+}
+
+.estimated-waiting-time h3 {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.estimated-waiting-time p {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.live-clock {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+/* Footer styling */
+.footer {
+  position: absolute;
+  bottom: 20px;
+}
+
+.initials-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+}

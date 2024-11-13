@@ -1,0 +1,57 @@
+# ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: salon-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - admin.sundestova.no
+    - wait.sundestova.no
+    - booking.sundestova.no
+    - api.sundestova.no
+    secretName: salon-tls # Shared secret for all subdomains
+  rules:
+  - host: admin.sundestova.no
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: salon-admin-service
+            port:
+              number: 80
+  - host: wait.sundestova.no
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: salon-waitlist-service
+            port:
+              number: 80
+  - host: booking.sundestova.no
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: salon-booking-service
+            port:
+              number: 80
+  - host: api.sundestova.no
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: salon-backend-service
+            port:
+              number: 80
